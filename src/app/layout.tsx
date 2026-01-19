@@ -38,11 +38,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/logo/cropped-decking-logo-2-1.jpg' },
+      { url: '/icon.jpg' },
       { url: '/logo/cropped-decking-logo-2-1.jpg', sizes: '32x32', type: 'image/jpeg' },
       { url: '/logo/cropped-decking-logo-2-1.jpg', sizes: '192x192', type: 'image/jpeg' },
     ],
-    shortcut: '/logo/cropped-decking-logo-2-1.jpg',
+    shortcut: '/icon.jpg',
     apple: [
       { url: '/logo/cropped-decking-logo-2-1.jpg', sizes: '180x180', type: 'image/jpeg' },
     ],
