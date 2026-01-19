@@ -5,8 +5,8 @@ export function LocalBusinessJsonLd() {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": BUSINESS_NAME,
-        "image": "https://deckingportmacquarie.com.au/gallery/mannys-deck.png",
-        "logo": "https://deckingportmacquarie.com.au/logo/cropped-decking-logo-2-1.jpg",
+        "image": "https://deckingpm.com/gallery/mannys-deck.png",
+        "logo": "https://deckingpm.com/logo/cropped-decking-logo-2-1.jpg",
         "telephone": PHONE_NUMBER,
         "email": EMAIL,
         "address": {
@@ -20,7 +20,7 @@ export function LocalBusinessJsonLd() {
             "latitude": -31.4333,
             "longitude": 152.9
         },
-        "url": "https://deckingportmacquarie.com.au",
+        "url": "https://deckingpm.com",
         "priceRange": "$$",
         "openingHoursSpecification": [
             {

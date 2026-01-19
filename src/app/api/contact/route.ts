@@ -30,7 +30,7 @@ export async function POST(request: Request) {
             try {
                 await resend.emails.send({
                     from: "Decking PM Website <onboarding@resend.dev>", // Replace with verified domain in production
-                    to: ["info@deckingportmacquarie.com.au"], // Replace with real business email
+                    to: ["Deckingpm@gmail.com"], // Replace with real business email
                     subject: `New Quote Request from ${name}`,
                     replyTo: email,
                     html: `

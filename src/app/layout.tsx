@@ -8,18 +8,18 @@ import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://deckingportmacquarie.com.au'),
+  metadataBase: new URL('https://deckingpm.com'),
   title: {
     default: `${BUSINESS_NAME} | Quality Timber & Composite Decks`,
     template: `%s | ${BUSINESS_NAME}`,
   },
-  description: "Licensed decking and carpentry specialists in Port Macquarie. Expert installation of timber decks and composite decking, pergolas, privacy screens, and balustrades. Owner-operated with a focus on high-quality craftsmanship and local service.",
-  keywords: ["decking port macquarie", "timber decks", "composite decking", "deck repairs", "pergolas", "privacy screens", "outdoor carpentry", "NSW Mid North Coast"],
+  description: "Port Macquarie's most trusted deck builders. Expert installation of timber and composite decking, pergolas, and privacy screens. Quality craftsmanship by locals.",
+  keywords: ["decking port macquarie", "deckingpm", "timber decks", "composite decking", "deck repairs", "pergolas", "privacy screens", "outdoor carpentry", "NSW Mid North Coast"],
   authors: [{ name: BUSINESS_NAME }],
   openGraph: {
     type: "website",
     locale: "en_AU",
-    url: "https://deckingportmacquarie.com.au",
+    url: "https://deckingpm.com",
     siteName: BUSINESS_NAME,
     title: `${BUSINESS_NAME} | Decking & Outdoor Carpentry`,
     description: "Expert decking services in Port Macquarie and the Mid North Coast. Built to last by locals.",
@@ -37,7 +37,15 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: '/logo/cropped-decking-logo-2-1.jpg',
+    icon: [
+      { url: '/logo/cropped-decking-logo-2-1.jpg' },
+      { url: '/logo/cropped-decking-logo-2-1.jpg', sizes: '32x32', type: 'image/jpeg' },
+      { url: '/logo/cropped-decking-logo-2-1.jpg', sizes: '192x192', type: 'image/jpeg' },
+    ],
+    shortcut: '/logo/cropped-decking-logo-2-1.jpg',
+    apple: [
+      { url: '/logo/cropped-decking-logo-2-1.jpg', sizes: '180x180', type: 'image/jpeg' },
+    ],
   },
 };
 
