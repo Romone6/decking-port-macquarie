@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: `%s | ${BUSINESS_NAME}`,
   },
   description: "Port Macquarie's most trusted deck builders. Expert installation of timber and composite decking, pergolas, and privacy screens. Quality craftsmanship by locals.",
-  keywords: ["decking port macquarie", "deckingpm", "timber decks", "composite decking", "deck repairs", "pergolas", "privacy screens", "outdoor carpentry", "NSW Mid North Coast"],
+  keywords: ["Decking Port Macquarie", "deckingpm", "timber decks", "composite decking", "deck repairs", "pergolas", "privacy screens", "outdoor carpentry", "NSW Mid North Coast"],
   authors: [{ name: BUSINESS_NAME }],
   openGraph: {
     type: "website",
