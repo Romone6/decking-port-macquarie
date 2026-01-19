@@ -10,7 +10,7 @@ export function Hero() {
         <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden pt-16 md:pt-20">
             {/* Background Image */}
             <Image
-                src="https://images.unsplash.com/photo-1590059132718-2679dd43d63b?q=80&w=2070&auto=format&fit=crop"
+                src="/gallery/mannys-deck.png"
                 alt="Quality timber deck in Port Macquarie"
                 fill
                 priority

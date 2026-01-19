@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { Container } from "./Container";
+import Image from "next/image";
 import {
     BUSINESS_NAME,
+    LOGO_PATH,
     EMAIL,
     NAV_LINKS,
     PHONE_LINK,
@@ -18,7 +20,17 @@ export function Footer() {
                 <div className="grid gap-8 py-12 md:grid-cols-3">
                     {/* Business Info */}
                     <div>
-                        <h3 className="mb-4 text-lg font-bold">{BUSINESS_NAME}</h3>
+                        <div className="mb-6 flex items-center gap-3">
+                            <div className="relative h-12 w-12 overflow-hidden rounded-lg border shadow-sm">
+                                <Image
+                                    src={LOGO_PATH}
+                                    alt={BUSINESS_NAME}
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                            <h3 className="text-xl font-bold">{BUSINESS_NAME}</h3>
+                        </div>
                         <p className="mb-4 text-sm text-muted-foreground">
                             Quality timber and composite decking for homes across the Port
                             Macquarie region.

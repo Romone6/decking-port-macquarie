@@ -8,6 +8,7 @@ import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://deckingportmacquarie.com.au'),
   title: {
     default: `${BUSINESS_NAME} | Quality Timber & Composite Decks`,
     template: `%s | ${BUSINESS_NAME}`,
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     description: "Expert decking services in Port Macquarie and the Mid North Coast. Built to last by locals.",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1590059132718-2679dd43d63b?q=80&w=1200",
+        url: "/gallery/mannys-deck.png",
         width: 1200,
         height: 630,
         alt: `${BUSINESS_NAME} Quality Decking`,
@@ -34,6 +35,9 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  icons: {
+    icon: '/logo/cropped-decking-logo-2-1.jpg',
   },
 };
 

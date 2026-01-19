@@ -5,8 +5,9 @@ export function LocalBusinessJsonLd() {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": BUSINESS_NAME,
-        "image": "https://images.unsplash.com/photo-1590059132718-2679dd43d63b?q=80&w=2070&auto=format&fit=crop",
-        "telephon": PHONE_NUMBER,
+        "image": "https://deckingportmacquarie.com.au/gallery/mannys-deck.png",
+        "logo": "https://deckingportmacquarie.com.au/logo/cropped-decking-logo-2-1.jpg",
+        "telephone": PHONE_NUMBER,
         "email": EMAIL,
         "address": {
             "@type": "PostalAddress",

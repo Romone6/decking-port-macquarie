@@ -7,7 +7,8 @@ import { Menu, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Container } from "./Container";
-import { BUSINESS_NAME, NAV_LINKS, PHONE_LINK, PHONE_NUMBER } from "@/lib/constants";
+import Image from "next/image";
+import { BUSINESS_NAME, LOGO_PATH, NAV_LINKS, PHONE_LINK, PHONE_NUMBER } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -23,12 +24,7 @@ export function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const getHref = (href: string) => {
-        if (pathname === "/" || !href.startsWith("#")) {
-            return href;
-        }
-        return `/${href}`;
-    };
+    const getHref = (href: string) => href;
 
     return (
         <header
@@ -42,9 +38,20 @@ export function Navbar() {
             <Container>
                 <nav className="flex h-16 items-center justify-between md:h-20">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2">
-                        <span className="text-xl font-bold tracking-tight md:text-2xl">
-                            {BUSINESS_NAME}
+                    <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
+                        <div className="relative h-10 w-10 overflow-hidden rounded-lg border shadow-sm md:h-12 md:w-12">
+                            <Image
+                                src={LOGO_PATH}
+                                alt={BUSINESS_NAME}
+                                fill
+                                className="object-cover"
+                                priority
+                            />
+                        </div>
+                        <span className="text-lg font-bold tracking-tight text-foreground md:text-xl lg:hidden xl:block">
+                            {BUSINESS_NAME.split(' ').map((word, i) => (
+                                <span key={i} className={i === 0 ? "text-primary" : ""}>{word} </span>
+                            ))}
                         </span>
                     </Link>
 
@@ -82,7 +89,19 @@ export function Navbar() {
                                 </Button>
                             </SheetTrigger>
                             <SheetContent side="right" className="w-[300px]">
-                                <SheetTitle className="text-left mb-6 text-xl">{BUSINESS_NAME}</SheetTitle>
+                                <SheetTitle className="text-left mb-8">
+                                    <div className="flex items-center gap-3">
+                                        <div className="relative h-10 w-10 overflow-hidden rounded-lg border shadow-sm">
+                                            <Image
+                                                src={LOGO_PATH}
+                                                alt={BUSINESS_NAME}
+                                                fill
+                                                className="object-cover"
+                                            />
+                                        </div>
+                                        <span className="text-lg font-bold tracking-tight">{BUSINESS_NAME}</span>
+                                    </div>
+                                </SheetTitle>
                                 <nav className="flex flex-col gap-6">
                                     {NAV_LINKS.map((link) => (
                                         <Link
