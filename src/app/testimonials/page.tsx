@@ -3,6 +3,7 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft, Star } from "lucide-react";
+import { MAILTO_LINK } from "@/lib/constants";
 
 export default function TestimonialsPage() {
     return (
@@ -32,7 +33,7 @@ export default function TestimonialsPage() {
                     <h2 className="text-3xl font-bold mb-6 italic">"The best decision we made for our backyard renovation."</h2>
                     <p className="text-lg opacity-90 mb-8">— Happy Customer, Bonny Hills</p>
                     <Button variant="outline" className="bg-white text-primary hover:bg-white/90 border-none h-14 px-8 text-lg font-bold" asChild>
-                        <Link href="/contact">Request Your Own Quote</Link>
+                        <a href={MAILTO_LINK}>Request Your Own Quote</a>
                     </Button>
                 </div>
             </Section>

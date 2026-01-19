@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Phone, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/Container";
-import { PHONE_LINK, PHONE_NUMBER } from "@/lib/constants";
+import { PHONE_LINK, PHONE_NUMBER, MAILTO_LINK } from "@/lib/constants";
 
 export function Hero() {
     return (
@@ -50,10 +50,10 @@ export function Hero() {
                             className="h-14 border-white/30 bg-white/10 px-8 text-lg font-bold text-white shadow-xl backdrop-blur-md hover:bg-white hover:text-black sm:w-auto"
                             asChild
                         >
-                            <Link href="#contact">
+                            <a href={MAILTO_LINK}>
                                 Request a Quote
                                 <ArrowRight className="ml-2 h-5 w-5" />
-                            </Link>
+                            </a>
                         </Button>
                     </div>
 

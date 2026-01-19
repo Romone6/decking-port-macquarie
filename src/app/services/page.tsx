@@ -3,7 +3,7 @@ import { Services } from "@/components/sections/Services";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft, Phone } from "lucide-react";
-import { PHONE_LINK, PHONE_NUMBER } from "@/lib/constants";
+import { PHONE_LINK, PHONE_NUMBER, MAILTO_LINK } from "@/lib/constants";
 
 export default function ServicesPage() {
     return (
@@ -37,9 +37,9 @@ export default function ServicesPage() {
                             </a>
                         </Button>
                         <Button variant="outline" size="lg" className="h-14 px-8 text-lg font-bold" asChild>
-                            <Link href="/contact">
-                                Get a Quote Online
-                            </Link>
+                            <a href={MAILTO_LINK}>
+                                Email for a Quote
+                            </a>
                         </Button>
                     </div>
                 </div>

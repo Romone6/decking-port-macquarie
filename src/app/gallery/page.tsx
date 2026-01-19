@@ -4,7 +4,7 @@ import { CircularGallery } from "@/components/gallery/CircularGallery";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft, Phone } from "lucide-react";
-import { PHONE_LINK, PHONE_NUMBER } from "@/lib/constants";
+import { PHONE_LINK, PHONE_NUMBER, MAILTO_LINK } from "@/lib/constants";
 
 export default function GalleryPage() {
     return (
@@ -46,12 +46,19 @@ export default function GalleryPage() {
                     <p className="text-lg text-muted-foreground mb-8">
                         Tell us about your project and we'll help you bring it to life with quality materials and expert craftsmanship.
                     </p>
-                    <Button size="lg" className="h-14 px-8 text-lg font-bold" asChild>
-                        <a href={PHONE_LINK}>
-                            <Phone className="mr-2 h-5 w-5" />
-                            Call {PHONE_NUMBER}
-                        </a>
-                    </Button>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <Button size="lg" className="h-14 px-8 text-lg font-bold" asChild>
+                            <a href={PHONE_LINK}>
+                                <Phone className="mr-2 h-5 w-5" />
+                                Call {PHONE_NUMBER}
+                            </a>
+                        </Button>
+                        <Button variant="outline" size="lg" className="h-14 px-8 text-lg font-bold" asChild>
+                            <a href={MAILTO_LINK}>
+                                Email for a Quote
+                            </a>
+                        </Button>
+                    </div>
                 </div>
             </Section>
         </div>

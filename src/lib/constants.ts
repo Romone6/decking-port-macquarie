@@ -3,7 +3,8 @@ export const BUSINESS_NAME = "Decking Port Macquarie";
 export const LOGO_PATH = "/logo/cropped-decking-logo-2-1.jpg";
 export const PHONE_NUMBER = "0490 534 731";
 export const PHONE_LINK = "tel:0490534731";
-export const EMAIL = "info@deckingportmacquarie.com.au"; // TODO: Replace with real email
+export const EMAIL = "Deckingpm@gmail.com";
+export const MAILTO_LINK = `mailto:${EMAIL}?subject=Quote Request - Decking Port Macquarie`;
 export const SERVICE_AREAS = [
   "Port Macquarie",
   "Wauchope",

@@ -1,214 +1,96 @@
 "use client";
 
-import { useState } from "react";
-import { Phone, Mail, Send, Loader2, CheckCircle2 } from "lucide-react";
+import { Phone, Mail, Instagram, Clock, ShieldCheck, MapPin } from "lucide-react";
 import { Container, Section } from "@/components/layout";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
-import { PHONE_NUMBER, PHONE_LINK, EMAIL } from "@/lib/constants";
+import { PHONE_NUMBER, PHONE_LINK, EMAIL, MAILTO_LINK } from "@/lib/constants";
 
 export function Contact() {
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isSuccess, setIsSuccess] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setError(null);
-
-        const formData = new FormData(e.currentTarget);
-        const data = Object.fromEntries(formData.entries());
-
-        // Basic validation
-        if (!data.name || !data.email || !data.message) {
-            setError("Please fill in all required fields.");
-            setIsSubmitting(false);
-            return;
-        }
-
-        try {
-            const response = await fetch("/api/contact", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
-            });
-
-            if (!response.ok) {
-                throw new Error("Failed to send message. Please try again later.");
-            }
-
-            setIsSuccess(true);
-        } catch (err: any) {
-            setError(err.message || "An unexpected error occurred.");
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
-
     return (
-        <Section id="contact" className="bg-muted/30">
-            <div className="mb-12 text-center">
-                <h2 className="text-3xl font-bold tracking-tight md:text-5xl">Contact Us</h2>
-                <div className="mx-auto mt-4 h-1 w-20 bg-primary" />
-                <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-                    Ready to transform your outdoor space? Give us a call or send a message for a free on-site quote.
-                </p>
-            </div>
+        <Section id="contact" className="bg-muted/10 overflow-hidden relative">
+            {/* Background Polish */}
+            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="grid gap-8 lg:grid-cols-5 lg:items-start">
-                {/* Contact Info */}
-                <div className="lg:col-span-2 space-y-6">
-                    <Card className="border-none shadow-none bg-transparent">
-                        <CardContent className="p-0 space-y-8">
-                            <div className="flex items-start gap-4">
-                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                                    <Phone className="h-6 w-6" />
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-bold mb-1">Call for a Quote</h3>
-                                    <p className="text-muted-foreground mb-4">Direct line to the owner.</p>
-                                    <a
-                                        href={PHONE_LINK}
-                                        className="text-2xl font-bold text-primary hover:underline transition-all"
-                                    >
-                                        {PHONE_NUMBER}
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                                    <Mail className="h-6 w-6" />
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-bold mb-1">Email Us</h3>
-                                    <p className="text-muted-foreground mb-4">Send us your project details anytime.</p>
-                                    <a
-                                        href={`mailto:${EMAIL}`}
-                                        className="text-xl font-bold hover:text-primary transition-all"
-                                    >
-                                        {EMAIL}
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div className="pt-8 border-t border-muted">
-                                <h4 className="font-bold mb-2">Service Region</h4>
-                                <p className="text-muted-foreground leading-relaxed">
-                                    Based in Port Macquarie. We serve all surrounding areas including Wauchope, Lake Cathie, Bonny Hills, and Laurieton.
-                                </p>
-                            </div>
-                        </CardContent>
-                    </Card>
+            <div className="relative z-10">
+                <div className="mb-16 text-center">
+                    <h2 className="text-4xl font-black tracking-tight md:text-6xl text-foreground">Get Your Free Quote</h2>
+                    <div className="mx-auto mt-6 h-1.5 w-24 bg-primary rounded-full" />
+                    <p className="mt-8 text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
+                        Communication is key. Reach out directly to the owner for expert advice and a prompt on-site assessment.
+                    </p>
                 </div>
 
-                {/* Contact Form */}
-                <div className="lg:col-span-3">
-                    <Card className="border shadow-lg">
-                        <CardContent className="p-6 md:p-10">
-                            {isSuccess ? (
-                                <div className="text-center py-12">
-                                    <CheckCircle2 className="h-16 w-16 text-green-600 mx-auto mb-6" />
-                                    <h3 className="text-2xl font-bold mb-4">Message Sent!</h3>
-                                    <p className="text-muted-foreground mb-8 text-lg">
-                                        Thank you for reaching out. We'll get back to you as soon as possible to discuss your project.
-                                    </p>
-                                    <Button variant="outline" onClick={() => setIsSuccess(false)}>
-                                        Send Another Message
+                <div className="grid gap-8 max-w-5xl mx-auto">
+                    {/* Primary Contact Cards */}
+                    <div className="grid gap-6 md:grid-cols-2">
+                        {/* Phone Card */}
+                        <Card className="border-2 border-primary/20 shadow-xl hover:border-primary transition-all duration-300 group overflow-hidden">
+                            <CardContent className="p-8 md:p-12 text-center relative">
+                                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                                    <Phone className="h-32 w-32 -mr-12 -mt-12 rotate-12" />
+                                </div>
+                                <div className="relative z-10 flex flex-col items-center">
+                                    <div className="bg-primary text-white p-5 rounded-3xl mb-6 shadow-lg shadow-primary/20">
+                                        <Phone className="h-8 w-8" />
+                                    </div>
+                                    <h3 className="text-2xl font-black uppercase tracking-tight mb-2">Speak to the owner</h3>
+                                    <p className="text-muted-foreground mb-8 font-medium">For immediate assistance and onsite bookings.</p>
+                                    <Button size="lg" className="h-16 px-10 text-xl font-black rounded-2xl w-full sm:w-auto shadow-xl hover:scale-105 active:scale-95 transition-all" asChild>
+                                        <a href={PHONE_LINK}>
+                                            {PHONE_NUMBER}
+                                        </a>
                                     </Button>
                                 </div>
-                            ) : (
-                                <form onSubmit={handleSubmit} className="space-y-6">
-                                    {/* Honeypot field for spam prevention */}
-                                    <div className="hidden">
-                                        <label htmlFor="website">Website</label>
-                                        <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
+                            </CardContent>
+                        </Card>
+
+                        {/* Email Card */}
+                        <Card className="border-2 border-primary/20 shadow-xl hover:border-primary transition-all duration-300 group overflow-hidden bg-primary text-white">
+                            <CardContent className="p-8 md:p-12 text-center relative">
+                                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                                    <Mail className="h-32 w-32 -mr-12 -mt-12 -rotate-12" />
+                                </div>
+                                <div className="relative z-10 flex flex-col items-center">
+                                    <div className="bg-white text-primary p-5 rounded-3xl mb-6 shadow-lg">
+                                        <Mail className="h-8 w-8" />
                                     </div>
-
-                                    <div className="grid gap-6 md:grid-cols-2">
-                                        <div className="space-y-2">
-                                            <label htmlFor="name" className="text-sm font-bold uppercase tracking-wider">
-                                                Full Name *
-                                            </label>
-                                            <Input
-                                                id="name"
-                                                name="name"
-                                                placeholder="John Smith"
-                                                required
-                                                className="h-12"
-                                            />
-                                        </div>
-                                        <div className="space-y-2">
-                                            <label htmlFor="phone" className="text-sm font-bold uppercase tracking-wider">
-                                                Phone Number
-                                            </label>
-                                            <Input
-                                                id="phone"
-                                                name="phone"
-                                                type="tel"
-                                                placeholder="0400 000 000"
-                                                className="h-12"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <label htmlFor="email" className="text-sm font-bold uppercase tracking-wider">
-                                            Email Address *
-                                        </label>
-                                        <Input
-                                            id="email"
-                                            name="email"
-                                            type="email"
-                                            placeholder="john@example.com.au"
-                                            required
-                                            className="h-12"
-                                        />
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <label htmlFor="message" className="text-sm font-bold uppercase tracking-wider">
-                                            How can we help? *
-                                        </label>
-                                        <Textarea
-                                            id="message"
-                                            name="message"
-                                            placeholder="Tell us about your project (size, material preference, etc.)"
-                                            className="min-h-[150px] resize-none"
-                                            required
-                                        />
-                                    </div>
-
-                                    {error && (
-                                        <p className="text-sm font-medium text-destructive bg-destructive/10 p-4 rounded-lg">
-                                            {error}
-                                        </p>
-                                    )}
-
-                                    <Button
-                                        type="submit"
-                                        className="w-full h-14 text-lg font-bold shadow-lg"
-                                        disabled={isSubmitting}
-                                    >
-                                        {isSubmitting ? (
-                                            <>
-                                                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                                                Sending...
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Send className="mr-2 h-5 w-5" />
-                                                Send Quote Request
-                                            </>
-                                        )}
+                                    <h3 className="text-2xl font-black uppercase tracking-tight mb-2">Email for a quote</h3>
+                                    <p className="text-primary-foreground/80 mb-8 font-medium">Send project details & photos directly to us.</p>
+                                    <Button size="lg" variant="outline" className="h-16 px-10 text-xl font-black rounded-2xl w-full sm:w-auto bg-white text-primary hover:bg-white/90 border-none shadow-xl hover:scale-105 active:scale-95 transition-all outline-none" asChild>
+                                        <a href={MAILTO_LINK}>
+                                            {EMAIL}
+                                        </a>
                                     </Button>
-                                </form>
-                            )}
-                        </CardContent>
-                    </Card>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    {/* Trust Indicators */}
+                    <div className="grid gap-6 md:grid-cols-3 pt-12">
+                        <div className="flex flex-col items-center text-center space-y-3">
+                            <div className="h-14 w-14 flex items-center justify-center rounded-2xl bg-white shadow-sm border text-primary">
+                                <Clock className="h-7 w-7" />
+                            </div>
+                            <h4 className="font-black uppercase tracking-widest text-xs">Prompt Service</h4>
+                            <p className="text-sm text-muted-foreground font-medium">Quotes within 48 hours of assessment.</p>
+                        </div>
+                        <div className="flex flex-col items-center text-center space-y-3">
+                            <div className="h-14 w-14 flex items-center justify-center rounded-2xl bg-white shadow-sm border text-primary">
+                                <ShieldCheck className="h-7 w-7" />
+                            </div>
+                            <h4 className="font-black uppercase tracking-widest text-xs">Licensed & Insured</h4>
+                            <p className="text-sm text-muted-foreground font-medium">Fully certified local tradesman.</p>
+                        </div>
+                        <div className="flex flex-col items-center text-center space-y-3">
+                            <div className="h-14 w-14 flex items-center justify-center rounded-2xl bg-white shadow-sm border text-primary">
+                                <MapPin className="h-7 w-7" />
+                            </div>
+                            <h4 className="font-black uppercase tracking-widest text-xs">Based in Port Mac</h4>
+                            <p className="text-sm text-muted-foreground font-medium">Proudly serving the entire Mid North Coast.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </Section>
