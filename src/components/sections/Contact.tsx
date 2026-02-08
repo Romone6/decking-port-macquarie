@@ -15,6 +15,7 @@ export function Contact() {
         name: "",
         phone: "",
         email: "",
+        address: "",
         message: "",
     });
 
@@ -25,8 +26,9 @@ export function Contact() {
         const body = encodeURIComponent(
             `Name: ${formData.name}\n` +
             `Phone: ${formData.phone}\n` +
-            `Email: ${formData.email}\n\n` +
-            `Project Details:\n${formData.message}`
+            `Email: ${formData.email}\n` +
+            `Job Address: ${formData.address}\n\n` +
+            `Job Description:\n${formData.message}`
         );
 
         window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
@@ -126,7 +128,9 @@ export function Contact() {
                                         </div>
 
                                         <div className="space-y-2">
-                                            <Label htmlFor="email" className="text-sm font-semibold">Email (optional)</Label>
+                                            <Label htmlFor="email" className="text-sm font-semibold">
+                                                Email <span className="text-destructive">*</span>
+                                            </Label>
                                             <Input
                                                 id="email"
                                                 name="email"
@@ -134,18 +138,37 @@ export function Contact() {
                                                 placeholder="Your email address"
                                                 value={formData.email}
                                                 onChange={handleChange}
+                                                required
                                                 className="h-12 rounded-xl border-2 focus:border-primary"
                                             />
                                         </div>
 
                                         <div className="space-y-2">
-                                            <Label htmlFor="message" className="text-sm font-semibold">Project Details</Label>
+                                            <Label htmlFor="address" className="text-sm font-semibold">
+                                                Job Address <span className="text-destructive">*</span>
+                                            </Label>
+                                            <Input
+                                                id="address"
+                                                name="address"
+                                                placeholder="Address where the work will be done"
+                                                value={formData.address}
+                                                onChange={handleChange}
+                                                required
+                                                className="h-12 rounded-xl border-2 focus:border-primary"
+                                            />
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="message" className="text-sm font-semibold">
+                                                Job Description <span className="text-destructive">*</span>
+                                            </Label>
                                             <Textarea
                                                 id="message"
                                                 name="message"
-                                                placeholder="Tell us about your decking project..."
+                                                placeholder="Describe the decking work you need done..."
                                                 value={formData.message}
                                                 onChange={handleChange}
+                                                required
                                                 rows={3}
                                                 className="rounded-xl border-2 focus:border-primary resize-none"
                                             />
