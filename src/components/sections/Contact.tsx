@@ -1,12 +1,44 @@
 "use client";
 
-import { Phone, Mail, Instagram, Clock, ShieldCheck, MapPin } from "lucide-react";
-import { Container, Section } from "@/components/layout";
+import { useState } from "react";
+import { Phone, Mail, Clock, ShieldCheck, MapPin, Send } from "lucide-react";
+import { Section } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { PHONE_NUMBER, PHONE_LINK, EMAIL, MAILTO_LINK } from "@/lib/constants";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { PHONE_NUMBER, PHONE_LINK, EMAIL } from "@/lib/constants";
 
 export function Contact() {
+    const [formData, setFormData] = useState({
+        name: "",
+        phone: "",
+        email: "",
+        message: "",
+    });
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const subject = encodeURIComponent(`Quote Request from ${formData.name}`);
+        const body = encodeURIComponent(
+            `Name: ${formData.name}\n` +
+            `Phone: ${formData.phone}\n` +
+            `Email: ${formData.email}\n\n` +
+            `Project Details:\n${formData.message}`
+        );
+
+        window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }));
+    };
+
     return (
         <Section id="contact" className="bg-muted/10 overflow-hidden relative">
             {/* Background Polish */}
@@ -45,23 +77,89 @@ export function Contact() {
                             </CardContent>
                         </Card>
 
-                        {/* Email Card */}
-                        <Card className="border-2 border-primary/20 shadow-xl hover:border-primary transition-all duration-300 group overflow-hidden bg-primary text-white">
-                            <CardContent className="p-8 md:p-12 text-center relative">
-                                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        {/* Quote Request Form Card */}
+                        <Card className="border-2 border-primary/20 shadow-xl hover:border-primary transition-all duration-300 overflow-hidden">
+                            <CardContent className="p-8 relative">
+                                <div className="absolute top-0 right-0 p-4 opacity-5">
                                     <Mail className="h-32 w-32 -mr-12 -mt-12 -rotate-12" />
                                 </div>
-                                <div className="relative z-10 flex flex-col items-center">
-                                    <div className="bg-white text-primary p-5 rounded-3xl mb-6 shadow-lg">
-                                        <Mail className="h-8 w-8" />
+                                <div className="relative z-10">
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="bg-primary text-white p-3 rounded-2xl shadow-lg shadow-primary/20">
+                                            <Mail className="h-6 w-6" />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-black uppercase tracking-tight">Request a Quote</h3>
+                                            <p className="text-sm text-muted-foreground">We'll call you back promptly</p>
+                                        </div>
                                     </div>
-                                    <h3 className="text-2xl font-black uppercase tracking-tight mb-2">Email for a quote</h3>
-                                    <p className="text-primary-foreground/80 mb-8 font-medium">Send project details & photos directly to us.</p>
-                                    <Button size="lg" variant="outline" className="h-16 px-10 text-xl font-black rounded-2xl w-full sm:w-auto bg-white text-primary hover:bg-white/90 border-none shadow-xl hover:scale-105 active:scale-95 transition-all outline-none" asChild>
-                                        <a href={MAILTO_LINK}>
-                                            {EMAIL}
-                                        </a>
-                                    </Button>
+
+                                    <form onSubmit={handleSubmit} className="space-y-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="name" className="text-sm font-semibold">Name</Label>
+                                            <Input
+                                                id="name"
+                                                name="name"
+                                                placeholder="Your name"
+                                                value={formData.name}
+                                                onChange={handleChange}
+                                                required
+                                                className="h-12 rounded-xl border-2 focus:border-primary"
+                                            />
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="phone" className="text-sm font-semibold">
+                                                Phone Number <span className="text-destructive">*</span>
+                                            </Label>
+                                            <Input
+                                                id="phone"
+                                                name="phone"
+                                                type="tel"
+                                                placeholder="Your phone number"
+                                                value={formData.phone}
+                                                onChange={handleChange}
+                                                required
+                                                className="h-12 rounded-xl border-2 focus:border-primary"
+                                            />
+                                            <p className="text-xs text-muted-foreground">Required so we can call you back</p>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="email" className="text-sm font-semibold">Email (optional)</Label>
+                                            <Input
+                                                id="email"
+                                                name="email"
+                                                type="email"
+                                                placeholder="Your email address"
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                                className="h-12 rounded-xl border-2 focus:border-primary"
+                                            />
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="message" className="text-sm font-semibold">Project Details</Label>
+                                            <Textarea
+                                                id="message"
+                                                name="message"
+                                                placeholder="Tell us about your decking project..."
+                                                value={formData.message}
+                                                onChange={handleChange}
+                                                rows={3}
+                                                className="rounded-xl border-2 focus:border-primary resize-none"
+                                            />
+                                        </div>
+
+                                        <Button
+                                            type="submit"
+                                            size="lg"
+                                            className="w-full h-14 text-lg font-black rounded-xl shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all gap-2"
+                                        >
+                                            <Send className="h-5 w-5" />
+                                            Send Quote Request
+                                        </Button>
+                                    </form>
                                 </div>
                             </CardContent>
                         </Card>
